@@ -2,13 +2,12 @@ services:
     db:
         image: postgres
         restart: always
-        environment:
-            POSTGRES_PASSWORD: Swagland24
         volumes:
             - pgdata:/var/lib/postgresql/data
             - ./scripts:/docker-entrypoint-initdb.d
         ports:
             - "5401:5432"
+        env_file: "DFPostgres.env"
 
     adminer:
         image: adminer

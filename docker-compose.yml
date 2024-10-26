@@ -3,12 +3,12 @@ services:
         image: postgres
         restart: always
         environment:
-            POSTGRES_PASSWORD: Swagland
+            POSTGRES_PASSWORD: Swagland24
         volumes:
             - pgdata:/var/lib/postgresql/data
             - ./scripts:/docker-entrypoint-initdb.d
         ports:
-            - "5432:5432"
+            - "5401:5432"
 
     adminer:
         image: adminer

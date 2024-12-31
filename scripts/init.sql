@@ -32,3 +32,8 @@ ADD CONSTRAINT fk_volunteer
 FOREIGN KEY (volunteer_id)
 REFERENCES volunteering.volunteers (volunteer_id)
 ON UPDATE CASCADE;
+
+-- Add a unique constraint to ensure no duplicate entries 
+ALTER TABLE volunteering.volunteers 
+ADD CONSTRAINT unique_volunteer 
+UNIQUE (first_name, last_name, email, phone_number);

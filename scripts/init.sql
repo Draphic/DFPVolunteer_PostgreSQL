@@ -9,21 +9,20 @@ CREATE SCHEMA volunteering;
 
 -- Create the 'volunteers' table
 CREATE TABLE volunteering.volunteers (
-    volunteer_id BIGSERIAL PRIMARY KEY,
-    sign_up_time TIMESTAMP WITHOUT TIME ZONE,
-    first_name CHARACTER VARYING(50),
-    last_name CHARACTER VARYING(50),
-    email CHARACTER VARYING(256) CHECK (email ~* '^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$'),
-    phone_number NUMERIC(10) CHECK (phone_number::text ~* '^\d{10}$'),
+    volunteer_id BIGSERIAL PRIMARY KEY NOT NULL,
+    sign_up_time TIMESTAMP WITHOUT TIME ZONE NOT NULL,
+    first_name CHARACTER VARYING(50) NOT NULL,
+    last_name CHARACTER VARYING(50) NOT NULL,
+    email CHARACTER VARYING(256) CHECK (email ~* '^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$') NOT NULL,
+    phone_number NUMERIC(10) CHECK (phone_number::text ~* '^\d{10}$') NOT NULL,
     organization CHARACTER VARYING(256)
 );
 
 -- Create the 'sign_in_responses' table
 CREATE TABLE volunteering.sign_in_responses (
-    session_id BIGSERIAL PRIMARY KEY,
-    sign_in_date DATE,
-    volunteer_id BIGINT,
-    sign_in TIMESTAMP WITHOUT TIME ZONE,
+    session_id BIGSERIAL PRIMARY KEY NOT NULL,
+    volunteer_id BIGINT NOT NULL,
+    sign_in TIMESTAMP WITHOUT TIME ZONE NOT NULL,
     sign_out TIMESTAMP WITHOUT TIME ZONE
 );
 

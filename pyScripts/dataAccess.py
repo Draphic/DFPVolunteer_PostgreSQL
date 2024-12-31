@@ -47,6 +47,7 @@ for table in tables:
     for row in rows:
         print(row)
 
+print()
 
 # Insert new volunteer data (optional)
 cur.execute("""
@@ -54,14 +55,14 @@ cur.execute("""
         sign_up_time, first_name, last_name, email, phone_number, organization
     ) VALUES (
         '2024-12-09 20:00:00', 'John', 'Doe', 'john.doe@example.com', 1234567890, 'Example Org'
-    );
+    ) RETURNING volunteer_id;
 """)
 volunteer_id = cur.fetchone()[0]
 cur.execute("""
     INSERT INTO volunteering.sign_in_responses (
-        sign_in_date, volunteer_id, sign_in, sign_out
+        volunteer_id, sign_in, sign_out
     ) VALUES (
-        '2024-12-09, %s, '2024-12-09 21:00:00', '2024-12-09 22:00:00'
+        %s, '2024-12-09 21:00:00', '2024-12-09 22:00:00'
     );
 """, (volunteer_id,))
 conn.commit()

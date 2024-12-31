@@ -14,7 +14,7 @@ CREATE TABLE volunteering.volunteers (
     first_name CHARACTER VARYING(50),
     last_name CHARACTER VARYING(50),
     email CHARACTER VARYING(256) CHECK (email ~* '^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$'),
-    phone_number NUMERIC(10) CHECK (phone_number ~* '^\d{10}$'),
+    phone_number NUMERIC(10) CHECK (phone_number::text ~* '^\d{10}$'),
     organization CHARACTER VARYING(256)
 );
 
